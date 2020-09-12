@@ -15,6 +15,7 @@ using NIOCAssetsRegistrationSystem.API.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using AutoMapper;
 
 namespace NIOCAssetsRegistrationSystem.API
 {
@@ -36,6 +37,7 @@ namespace NIOCAssetsRegistrationSystem.API
                 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
             services.AddCors();
+            services.AddAutoMapper(typeof(AssetRegistrationRepository).Assembly);
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAssetRegistrationRepository, AssetRegistrationRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
