@@ -164,11 +164,11 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                     CompanyId = table.Column<int>(nullable: true),
                     UserId = table.Column<int>(nullable: true),
                     ProvinceId = table.Column<int>(nullable: true),
-                    BuildingTypeId = table.Column<int>(nullable: true),
                     CityId = table.Column<int>(nullable: true),
-                    MapCoordinatesAccuracyId = table.Column<int>(nullable: true),
+                    OwnershipDocumentTypeId = table.Column<int>(nullable: true),
                     MapFormatId = table.Column<int>(nullable: true),
-                    OwnershipDocumentTypeId = table.Column<int>(nullable: true)
+                    MapCoordinatesAccuracyId = table.Column<int>(nullable: true),
+                    BuildingTypeId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

@@ -9,7 +9,7 @@ using NIOCAssetsRegistrationSystem.API.Data;
 namespace NIOCAssetsRegistrationSystem.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200912063846_InitialCreate")]
+    [Migration("20200912064953_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -278,46 +278,46 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
 
             modelBuilder.Entity("NIOCAssetsRegistrationSystem.API.Models.CompaniesPropertyInquiry", b =>
                 {
-                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.BuildingType", null)
+                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.BuildingType", "BuildingType")
                         .WithMany("CompaniesPropertyInquiries")
                         .HasForeignKey("BuildingTypeId");
 
-                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.City", null)
+                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.City", "City")
                         .WithMany("CompaniesPropertyInquiries")
                         .HasForeignKey("CityId");
 
-                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.Company", null)
+                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.Company", "Company")
                         .WithMany("CompaniesPropertyInquiries")
                         .HasForeignKey("CompanyId");
 
-                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.MapCoordinatesAccuracy", null)
+                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.MapCoordinatesAccuracy", "MapCoordinatesAccuracy")
                         .WithMany("CompaniesPropertyInquiries")
                         .HasForeignKey("MapCoordinatesAccuracyId");
 
-                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.MapFormat", null)
+                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.MapFormat", "MapFormat")
                         .WithMany("CompaniesPropertyInquiries")
                         .HasForeignKey("MapFormatId");
 
-                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.OwnershipDocumentType", null)
+                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.OwnershipDocumentType", "OwnershipDocumentType")
                         .WithMany("CompaniesPropertyInquiries")
                         .HasForeignKey("OwnershipDocumentTypeId");
 
-                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.Province", null)
+                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.Province", "Province")
                         .WithMany("CompaniesPropertyInquiries")
                         .HasForeignKey("ProvinceId");
 
-                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.User", null)
+                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.User", "User")
                         .WithMany("CompaniesPropertyInquiries")
                         .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("NIOCAssetsRegistrationSystem.API.Models.Confirmation", b =>
                 {
-                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.Company", null)
+                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.Company", "Company")
                         .WithMany("Confirmations")
                         .HasForeignKey("CompanyId");
 
-                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.User", null)
+                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.User", "User")
                         .WithMany("Confirmations")
                         .HasForeignKey("UserId");
                 });
