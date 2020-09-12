@@ -15,9 +15,21 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             this._context = context;
         }
 
-        public Task<User> Login(string username, string password)
+        public async Task<User> Login(string username, string password)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == username);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            {
+                return null;
+            }
+
+            return user;
         }
 
         public async Task<User> Register(User user, string password)
