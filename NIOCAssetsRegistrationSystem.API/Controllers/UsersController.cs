@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NIOCAssetsRegistrationSystem.API.Data;
 
 namespace NIOCAssetsRegistrationSystem.API.Controllers
 {
@@ -11,6 +13,23 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly IAssetRegistrationRepository _repo;
+        private readonly IMapper _mapper;
 
+        public UsersController(IAssetRegistrationRepository repo, IMapper mapper)
+        {
+            _repo = repo;
+            _mapper = mapper;
+        }
+
+        [HttpGet("{id}", Name = "GetUser")]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            var user = await _repo.GetUser(id);
+
+            var userToReturn = _mapper.Map<UserForDetailedDto>(user);
+
+            return Ok(userToReturn);
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return user;
         }
 
-        public Task<bool> SaveAll()
+        public async Task<bool> SaveAll()
         {
             return await _context.SaveChangesAsync() > 0;
         }

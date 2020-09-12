@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NIOCAssetsRegistrationSystem.API.Data
 {
-    interface IAssetRegistrationRepository
+    public interface IAssetRegistrationRepository
     {
         void Add<T>(T entity) where T : class;
         void Delete<T>(T entity) where T : class;
