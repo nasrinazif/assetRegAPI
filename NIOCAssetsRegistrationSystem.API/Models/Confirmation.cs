@@ -10,5 +10,9 @@ namespace NIOCAssetsRegistrationSystem.API.Models
         public int Id { get; set; }
         public DateTime? ConfirmDate { get; set; }
         public bool? Active { get; set; }
+        public Company Company { get; set; }
+        public int? CompanyId { get; set; }
+        public User User { get; set; }
+        public int? UserId { get; set; }
     }
 }

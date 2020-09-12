@@ -11,6 +11,10 @@ namespace NIOCAssetsRegistrationSystem.API.Models
         public string UserName { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
+        public Company Company { get; set; }
+        public int? CompanyId { get; set; }
+        public UserType UserType { get; set; }
+        public int? UserTypeId { get; set; }
         public ICollection<CompaniesPropertyInquiry> CompaniesPropertyInquiries { get; set; }
         public ICollection<Confirmation> Confirmations { get; set; }
     }

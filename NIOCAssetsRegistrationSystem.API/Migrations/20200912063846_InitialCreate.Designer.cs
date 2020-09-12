@@ -9,7 +9,7 @@ using NIOCAssetsRegistrationSystem.API.Data;
 namespace NIOCAssetsRegistrationSystem.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200908080249_InitialCreate")]
+    [Migration("20200912063846_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -324,11 +324,11 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
 
             modelBuilder.Entity("NIOCAssetsRegistrationSystem.API.Models.User", b =>
                 {
-                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.Company", null)
+                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.Company", "Company")
                         .WithMany("Users")
                         .HasForeignKey("CompanyId");
 
-                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.UserType", null)
+                    b.HasOne("NIOCAssetsRegistrationSystem.API.Models.UserType", "UserType")
                         .WithMany("Users")
                         .HasForeignKey("UserTypeId");
                 });

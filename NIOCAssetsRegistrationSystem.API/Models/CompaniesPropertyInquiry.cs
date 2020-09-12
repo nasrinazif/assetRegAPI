@@ -16,5 +16,21 @@ namespace NIOCAssetsRegistrationSystem.API.Models
         public decimal? BuildingArea { get; set; }
         public string Description { get; set; }
         public DateTime? LatestChanges { get; set; }
+        public Company Company { get; set; }
+        public int? CompanyId { get; set; }
+        public User User { get; set; }
+        public int? UserId { get; set; }
+        public Province Province { get; set; }
+        public int? ProvinceId { get; set; }
+        public City City { get; set; }
+        public int? CityId { get; set; }
+        public OwnershipDocumentType OwnershipDocumentType { get; set; }
+        public int? OwnershipDocumentTypeId { get; set; }
+        public MapFormat MapFormat { get; set; }
+        public int? MapFormatId { get; set; }
+        public MapCoordinatesAccuracy MapCoordinatesAccuracy { get; set; }
+        public int? MapCoordinatesAccuracyId { get; set; }
+        public BuildingType BuildingType { get; set; }
+        public int? BuildingTypeId { get; set; }
     }
 }
