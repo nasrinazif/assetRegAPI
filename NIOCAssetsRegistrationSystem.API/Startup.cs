@@ -37,6 +37,7 @@ namespace NIOCAssetsRegistrationSystem.API
             });
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IAssetRegistrationRepository, AssetRegistrationRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters
