@@ -23,12 +23,16 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
         private readonly IAuthRepository _repo;
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
+        private readonly IAssetRegistrationRepository _repoAssets;
+        private readonly DataContext _context;
 
-        public AuthController(IAuthRepository repo, IConfiguration config, IMapper mapper)
+        public AuthController(IAuthRepository repo, IConfiguration config, IMapper mapper, IAssetRegistrationRepository repoAssets, DataContext context)
         {
             this._repo = repo;
             this._config = config;
             this._mapper = mapper;
+            this._repoAssets = repoAssets;
+            this._context = context;
         }
 
         [HttpPost("register")]
@@ -46,6 +50,16 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             var userToCreate = _mapper.Map<User>(userForRegisterDto);
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
+
+            if (createdUser.CompanyId != null)
+            {
+                createdUser.Company = _context.Companies.FirstOrDefault(c => c.Id == createdUser.CompanyId);
+            }
+            
+            if(createdUser.UserTypeId != null)
+            {
+                createdUser.UserType = _context.UserTypes.FirstOrDefault(t => t.Id == createdUser.UserTypeId);
+            }
 
             var userToReturn = _mapper.Map<UserToReturnDto>(createdUser);
 

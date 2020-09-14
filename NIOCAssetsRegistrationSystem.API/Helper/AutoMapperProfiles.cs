@@ -20,7 +20,7 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
                 .ForMember(dest => dest.CompanyName, opt => 
                 opt.MapFrom(src => src.Company.Name.ToString()))
                 .ForMember(dest => dest.UserTypeName, opt =>
-                opt.MapFrom(src => src.UserType.Name));
+                opt.MapFrom(src => src.UserType.Name.ToString()));
         }
     }
 }

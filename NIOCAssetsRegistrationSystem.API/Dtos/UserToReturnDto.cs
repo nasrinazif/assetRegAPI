@@ -10,9 +10,7 @@ namespace NIOCAssetsRegistrationSystem.API.Dtos
     {
         public int Id { get; set; }
         public string UserName { get; set; }
-        public Company Company { get; set; }
         public int? CompanyId { get; set; }
-        public UserType UserType { get; set; }
         public int? UserTypeId { get; set; }
         public string CompanyName { get; set; }
         public string UserTypeName { get; set; }

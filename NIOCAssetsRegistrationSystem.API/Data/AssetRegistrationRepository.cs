@@ -32,6 +32,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return user;
         }
 
+        public async Task<Company> GetCompany(int id)
+        {
+            var company = await _context.Companies.FirstOrDefaultAsync(c => c.Id == id);
+
+            return company;
+        }
+
         public async Task<bool> SaveAll()
         {
             return await _context.SaveChangesAsync() > 0;
