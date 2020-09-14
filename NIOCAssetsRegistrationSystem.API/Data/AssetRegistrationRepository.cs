@@ -32,11 +32,18 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return user;
         }
 
-        public async Task<Company> GetCompany(int id)
+        public Company GetCompany(int id)
         {
-            var company = await _context.Companies.FirstOrDefaultAsync(c => c.Id == id);
+            var company = _context.Companies.FirstOrDefault(c => c.Id == id);
 
             return company;
+        }
+
+        public UserType GetUserType(int id)
+        {
+            var userType = _context.UserTypes.FirstOrDefault(t => t.Id == id);
+
+            return userType;
         }
 
         public async Task<bool> SaveAll()
