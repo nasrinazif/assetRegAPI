@@ -30,6 +30,9 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
         {
             var propertry = await _repo.GetCompaniesPropertyAsync(id);
 
+            var companyCode = propertry.CompanyId.GetValueOrDefault();
+            propertry.Company = _repo.GetCompany(companyCode);
+
             var propertyToReturn = _mapper.Map<PropertyToReturnDto>(propertry);
 
             return Ok(propertyToReturn);
