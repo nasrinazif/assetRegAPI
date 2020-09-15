@@ -21,5 +21,7 @@ namespace NIOCAssetsRegistrationSystem.API.Dtos
         public decimal? Longitude { get; set; }
         public int? CompanyId { get; set; }
         public string CompanyName { get; set; }
+        public int? UserId { get; set; }
+        public string UserName { get; set; }
     }
 }

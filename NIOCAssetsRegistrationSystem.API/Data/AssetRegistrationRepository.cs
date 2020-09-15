@@ -15,6 +15,8 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         {
             _context = context;
         }
+
+        /*Generic Methods*/
         public void Add<T>(T entity) where T : class
         {
             _context.Add(entity);
@@ -24,6 +26,8 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         {
             _context.Remove(entity);
         }
+
+        /*Async Methods*/
 
         public async Task<User> GetUser(int id)
         {
@@ -39,6 +43,8 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return companyProperty;
         }
 
+        /* Sync Methods*/
+
         public Company GetCompany(int id)
         {
             var company = _context.Companies.FirstOrDefault(c => c.Id == id);
@@ -51,6 +57,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             var userType = _context.UserTypes.FirstOrDefault(t => t.Id == id);
 
             return userType;
+        }
+
+        public User GetUserSync(int id)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+
+            return user;
         }
 
         public async Task<bool> SaveAll()
