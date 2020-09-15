@@ -19,5 +19,7 @@ namespace NIOCAssetsRegistrationSystem.API.Dtos
         public byte[] UploadedFile { get; set; }
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
+        public int? CompanyId { get; set; }
+        public string CompanyName { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NIOCAssetsRegistrationSystem.API.Data;
+using NIOCAssetsRegistrationSystem.API.Dtos;
 
 namespace NIOCAssetsRegistrationSystem.API.Controllers
 {
@@ -29,9 +30,9 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
         {
             var propertry = await _repo.GetCompaniesPropertyAsync(id);
 
-            //var userToReturn = _mapper.Map<UserToReturnDto>(user);
+            var propertyToReturn = _mapper.Map<PropertyToReturnDto>(propertry);
 
-            return Ok(propertry);
+            return Ok(propertyToReturn);
         }
     }
 }

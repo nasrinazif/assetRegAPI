@@ -13,14 +13,14 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
         public AutoMapperProfiles()
         {
             CreateMap<UserForRegisterDto, User>();
-            //CreateMap<UserForRegisterDto, User>()
-            //    .ForMember(dest => dest.Company, opt =>
-            //    opt.MapFrom(src => src));
             CreateMap<User, UserToReturnDto>()
                 .ForMember(dest => dest.CompanyName, opt => 
                 opt.MapFrom(src => src.Company.Name.ToString()))
                 .ForMember(dest => dest.UserTypeName, opt =>
                 opt.MapFrom(src => src.UserType.Name.ToString()));
+            CreateMap<CompaniesPropertyInquiry, PropertyToReturnDto>()
+                .ForMember(dest => dest.CompanyName, opt =>
+                opt.MapFrom(src => src.Company.Name.ToString()));
         }
     }
 }
