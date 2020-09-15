@@ -15,5 +15,6 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<CompaniesPropertyInquiry> GetCompaniesPropertyAsync(int id);
         Company GetCompany(int id);
         UserType GetUserType(int id);
+        User GetUserSync(int id);
     }
 }

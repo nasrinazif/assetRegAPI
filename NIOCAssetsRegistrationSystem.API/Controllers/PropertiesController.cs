@@ -34,7 +34,8 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             var companyCode = propertry.CompanyId.GetValueOrDefault();
             propertry.Company = _repo.GetCompany(companyCode);
 
-            var userCode = propertry.UserId.GetValueOrDefault();            
+            var userCode = propertry.UserId.GetValueOrDefault();
+            propertry.User = _repo.GetUserSync(userCode);
 
             var propertyToReturn = _mapper.Map<PropertyToReturnDto>(propertry);
 
