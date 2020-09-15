@@ -32,5 +32,8 @@ namespace NIOCAssetsRegistrationSystem.API.Models
         public int? MapCoordinatesAccuracyId { get; set; }
         public BuildingType BuildingType { get; set; }
         public int? BuildingTypeId { get; set; }
+        public byte[] UploadedFile { get; set; }
+        public decimal? Latitude { get; set; }
+        public decimal? Longitude { get; set; }
     }
 }
