@@ -32,6 +32,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return user;
         }
 
+        public async Task<CompaniesPropertyInquiry> GetCompaniesPropertyAsync(int id)
+        {
+            var companyProperty = await _context.CompaniesPropertyInquiries.FirstOrDefaultAsync(p => p.Id == id);
+
+            return companyProperty;
+        }
+
         public Company GetCompany(int id)
         {
             var company = _context.Companies.FirstOrDefault(c => c.Id == id);
