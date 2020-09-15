@@ -12,6 +12,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         void Delete<T>(T entity) where T : class;
         Task<bool> SaveAll();        
         Task<User> GetUser(int id);
+        Task<CompaniesPropertyInquiry> GetCompaniesPropertyAsync(int id);
         Company GetCompany(int id);
         UserType GetUserType(int id);
     }
