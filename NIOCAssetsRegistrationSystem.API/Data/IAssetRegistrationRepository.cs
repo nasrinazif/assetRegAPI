@@ -13,6 +13,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<bool> SaveAll();        
         Task<User> GetUser(int id);
         Task<CompaniesPropertyInquiry> GetCompaniesPropertyAsync(int id);
+        Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesAsync();
         Company GetCompany(int id);
         UserType GetUserType(int id);
         User GetUserSync(int id);

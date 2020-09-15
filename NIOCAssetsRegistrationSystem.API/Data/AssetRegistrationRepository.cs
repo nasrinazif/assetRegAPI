@@ -43,6 +43,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return companyProperty;
         }
 
+        public async Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesAsync()
+        {
+            var companyProperties = await _context.CompaniesPropertyInquiries.ToListAsync();
+
+            return companyProperties;
+        }
+
         /* Sync Methods*/
 
         public Company GetCompany(int id)

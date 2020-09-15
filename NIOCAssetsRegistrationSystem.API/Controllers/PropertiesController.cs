@@ -61,5 +61,42 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return Ok(propertyToReturn);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetProperties()
+        {
+            /* Get the properties from the asset repo */
+            var properties = await _repo.GetCompaniesPropertiesAsync();
+
+            foreach(var propertry in properties)
+            {
+                /* Refrences to related entities*/
+                var companyCode = propertry.CompanyId.GetValueOrDefault();
+                propertry.Company = _repo.GetCompany(companyCode);
+
+                var userCode = propertry.UserId.GetValueOrDefault();
+                propertry.User = _repo.GetUserSync(userCode);
+
+                var provinceCode = propertry.ProvinceId.GetValueOrDefault();
+                propertry.Province = _repo.GetProvince(provinceCode);
+
+                var cityCode = propertry.CityId.GetValueOrDefault();
+                propertry.City = _repo.GetCity(cityCode);
+
+                var ownershipDocumentTypeCode = propertry.OwnershipDocumentTypeId.GetValueOrDefault();
+                propertry.OwnershipDocumentType = _repo.GetOwnershipDocumentType(ownershipDocumentTypeCode);
+
+                var mapFormatCode = propertry.MapFormatId.GetValueOrDefault();
+                propertry.MapFormat = _repo.GetMapFormat(mapFormatCode);
+
+                var mapCoordinatesAccuracyCode = propertry.MapCoordinatesAccuracyId.GetValueOrDefault();
+                propertry.MapCoordinatesAccuracy = _repo.GetMapCoordinatesAccuracy(mapCoordinatesAccuracyCode);
+
+                var buildingTypeCode = propertry.BuildingTypeId.GetValueOrDefault();
+                propertry.BuildingType = _repo.GetBuildingType(buildingTypeCode);
+            }
+
+            return Ok(properties);
+        }
     }
 }
