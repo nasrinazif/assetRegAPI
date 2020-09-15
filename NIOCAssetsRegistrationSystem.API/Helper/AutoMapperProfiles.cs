@@ -22,7 +22,11 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
                 .ForMember(dest => dest.CompanyName, opt =>
                 opt.MapFrom(src => src.Company.Name.ToString()))
                 .ForMember(dest => dest.UserName, opt =>
-                opt.MapFrom(src => src.User.UserName.ToString()));
+                opt.MapFrom(src => src.User.UserName.ToString()))
+                .ForMember(dest => dest.ProvinceName, opt =>
+                opt.MapFrom(src => src.Province.Name.ToString()))
+                .ForMember(dest => dest.CityName, opt =>
+                opt.MapFrom(src => src.City.Name.ToString()));
         }
     }
 }

@@ -16,5 +16,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Company GetCompany(int id);
         UserType GetUserType(int id);
         User GetUserSync(int id);
+        Province GetProvince(int id);
+        City GetCity(int id);
     }
 }

@@ -37,6 +37,12 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             var userCode = propertry.UserId.GetValueOrDefault();
             propertry.User = _repo.GetUserSync(userCode);
 
+            var provinceCode = propertry.ProvinceId.GetValueOrDefault();
+            propertry.Province = _repo.GetProvince(provinceCode);
+
+            var cityCode = propertry.CityId.GetValueOrDefault();
+            propertry.City = _repo.GetCity(cityCode);
+
             var propertyToReturn = _mapper.Map<PropertyToReturnDto>(propertry);
 
             return Ok(propertyToReturn);

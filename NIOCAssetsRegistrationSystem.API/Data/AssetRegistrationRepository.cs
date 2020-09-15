@@ -65,6 +65,19 @@ namespace NIOCAssetsRegistrationSystem.API.Data
 
             return user;
         }
+        public Province GetProvince(int id)
+        {
+            var province = _context.Provinces.FirstOrDefault(p => p.Id == id);
+
+            return province;
+        }
+
+        public City GetCity(int id)
+        {
+            var city = _context.Cities.FirstOrDefault(c => c.Id == id);
+
+            return city;
+        }
 
         public async Task<bool> SaveAll()
         {
