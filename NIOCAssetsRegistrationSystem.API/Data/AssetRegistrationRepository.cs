@@ -93,6 +93,20 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return mapFormat;
         }
 
+        public MapCoordinatesAccuracy GetMapCoordinatesAccuracy(int id)
+        {
+            var mapCoordinatesAccuracy = _context.MapCoordinatesAccuracies.FirstOrDefault(m => m.Id == id);
+
+            return mapCoordinatesAccuracy;
+        }
+
+        public BuildingType GetBuildingType(int id)
+        {
+            var buildingType = _context.BuildingTypes.FirstOrDefault(b => b.Id == id);
+
+            return buildingType;
+        }
+
         public async Task<bool> SaveAll()
         {
             return await _context.SaveChangesAsync() > 0;

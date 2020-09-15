@@ -20,5 +20,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         City GetCity(int id);
         OwnershipDocumentType GetOwnershipDocumentType(int id);
         MapFormat GetMapFormat(int id);
+        MapCoordinatesAccuracy GetMapCoordinatesAccuracy(int id);
+        BuildingType GetBuildingType(int id);
     }
 }
