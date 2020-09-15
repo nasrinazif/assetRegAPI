@@ -79,6 +79,20 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return city;
         }
 
+        public OwnershipDocumentType GetOwnershipDocumentType(int id)
+        {
+            var ownershipDocType = _context.OwnershipDocumentTypes.FirstOrDefault(o => o.Id == id);
+
+            return ownershipDocType;
+        }
+
+        public MapFormat GetMapFormat(int id)
+        {
+            var mapFormat = _context.MapFormats.FirstOrDefault(m => m.Id == id);
+
+            return mapFormat;
+        }
+
         public async Task<bool> SaveAll()
         {
             return await _context.SaveChangesAsync() > 0;

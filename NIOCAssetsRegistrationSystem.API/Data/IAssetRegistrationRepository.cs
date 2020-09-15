@@ -18,5 +18,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         User GetUserSync(int id);
         Province GetProvince(int id);
         City GetCity(int id);
+        OwnershipDocumentType GetOwnershipDocumentType(int id);
+        MapFormat GetMapFormat(int id);
     }
 }
