@@ -28,6 +28,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
         [HttpGet("{id}", Name = "GetProperty")]
         public async Task<IActionResult> GetProperty(int id)
         {
+            /* Get the property from the asset repo by its id*/
             var propertry = await _repo.GetCompaniesPropertyAsync(id);
 
             /* Refrences to related entities*/
@@ -43,6 +44,19 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             var cityCode = propertry.CityId.GetValueOrDefault();
             propertry.City = _repo.GetCity(cityCode);
 
+            var ownershipDocumentTypeCode = propertry.OwnershipDocumentTypeId.GetValueOrDefault();
+            propertry.OwnershipDocumentType = _repo.GetOwnershipDocumentType(ownershipDocumentTypeCode);
+
+            var mapFormatCode = propertry.MapFormatId.GetValueOrDefault();
+            propertry.MapFormat = _repo.GetMapFormat(mapFormatCode);
+
+            var mapCoordinatesAccuracyCode = propertry.MapCoordinatesAccuracyId.GetValueOrDefault();
+            propertry.MapCoordinatesAccuracy = _repo.GetMapCoordinatesAccuracy(mapCoordinatesAccuracyCode);
+
+            var buildingTypeCode = propertry.BuildingTypeId.GetValueOrDefault();
+            propertry.BuildingType = _repo.GetBuildingType(buildingTypeCode);
+
+            /* Return the property*/
             var propertyToReturn = _mapper.Map<PropertyToReturnDto>(propertry);
 
             return Ok(propertyToReturn);

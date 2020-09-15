@@ -26,7 +26,15 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
                 .ForMember(dest => dest.ProvinceName, opt =>
                 opt.MapFrom(src => src.Province.Name.ToString()))
                 .ForMember(dest => dest.CityName, opt =>
-                opt.MapFrom(src => src.City.Name.ToString()));
+                opt.MapFrom(src => src.City.Name.ToString()))
+                .ForMember(dest => dest.OwnershipDocumentTypeName, opt =>
+                opt.MapFrom(src => src.OwnershipDocumentType.Name.ToString()))
+                .ForMember(dest => dest.MapFormatName, opt =>
+                opt.MapFrom(src => src.MapFormat.Name.ToString()))
+                .ForMember(dest => dest.MapCoordinatesAccuracyName, opt =>
+                opt.MapFrom(src => src.MapCoordinatesAccuracy.Name.ToString()))
+                .ForMember(dest => dest.BuildingTypeName, opt =>
+                opt.MapFrom(src => src.BuildingType.Name.ToString()));
         }
     }
 }
