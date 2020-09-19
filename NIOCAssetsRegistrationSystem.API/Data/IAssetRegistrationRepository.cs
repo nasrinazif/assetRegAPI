@@ -15,6 +15,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<CompaniesPropertyInquiry> GetCompaniesPropertyAsync(int id);
         Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesAsync();
         Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesByCompanyAsync(int id);
+        Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesByUserAsync(int id);
         Company GetCompany(int id);
         UserType GetUserType(int id);
         User GetUserSync(int id);
@@ -24,6 +25,6 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         MapFormat GetMapFormat(int id);
         MapCoordinatesAccuracy GetMapCoordinatesAccuracy(int id);
         BuildingType GetBuildingType(int id);
-        Task<int?> GetCompanyCodeForUser(int id);
+        Task<int?> GetCompanyCodeForUser(int id);        
     }
 }

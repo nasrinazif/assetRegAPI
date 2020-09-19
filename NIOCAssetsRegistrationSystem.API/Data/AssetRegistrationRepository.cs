@@ -57,6 +57,15 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return companyProperties;
         }
 
+        public async Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesByUserAsync(int id)
+        {
+            var companyId = await _context.Users.Where(u => u.Id == id).Select(c => c.CompanyId).FirstOrDefaultAsync();
+
+            var companyProperties = await _context.CompaniesPropertyInquiries.Where(c => c.CompanyId == companyId).ToListAsync();
+
+            return companyProperties;
+        }
+
         public async Task<int?> GetCompanyCodeForUser(int id)
         {
             var companyCode = await _context.Users.Where(c => c.Id == id).Select(c => c.CompanyId).FirstOrDefaultAsync();
