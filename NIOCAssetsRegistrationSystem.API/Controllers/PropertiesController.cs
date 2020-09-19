@@ -117,5 +117,13 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return Ok(propertiesToReturn);
         }
+
+        [HttpGet("user/{id}/companycode")]
+        public async Task<IActionResult> GetCompanyCodeForUser(int id)
+        {
+            var companyCode = await _repo.GetCompanyCodeForUser(id);
+
+            return Ok(companyCode);
+        }
     }
 }

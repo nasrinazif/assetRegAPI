@@ -24,5 +24,6 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         MapFormat GetMapFormat(int id);
         MapCoordinatesAccuracy GetMapCoordinatesAccuracy(int id);
         BuildingType GetBuildingType(int id);
+        Task<int?> GetCompanyCodeForUser(int id);
     }
 }
