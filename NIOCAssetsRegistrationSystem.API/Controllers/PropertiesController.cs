@@ -153,5 +153,20 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return Ok(companyCode);
         }
+
+        [HttpDelete("property/{id}")]
+        public async Task<IActionResult> DeleteProperty(int id)
+        {
+            var propertyToDelete = _repo.GetCompaniesProperty(id);
+
+            _repo.DeleteCompanyPropertyInquiry(propertyToDelete);
+
+            if (await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to delete the property");
+        }
     }
 }

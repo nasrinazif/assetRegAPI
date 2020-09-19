@@ -27,6 +27,11 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             _context.Remove(entity);
         }
 
+        public void DeleteCompanyPropertyInquiry(CompaniesPropertyInquiry companiesPropertyInquiry)
+        {
+            _context.Remove(companiesPropertyInquiry);
+        }
+
         /*Async Methods*/
 
         public async Task<User> GetUser(int id)
@@ -80,6 +85,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             var company = _context.Companies.FirstOrDefault(c => c.Id == id);
 
             return company;
+        }
+
+        public CompaniesPropertyInquiry GetCompaniesProperty(int id)
+        {
+            var companyProperty = _context.CompaniesPropertyInquiries.FirstOrDefault(p => p.Id == id);
+
+            return companyProperty;
         }
 
         public UserType GetUserType(int id)
