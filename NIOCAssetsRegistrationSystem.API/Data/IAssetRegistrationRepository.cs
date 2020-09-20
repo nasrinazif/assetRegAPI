@@ -33,5 +33,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<List<City>> GetCitiesAsync();
         Task<City> GetCityByIdAsync(int id);
         Task<List<City>> GetCitiesByProvinceIdAsync(int id);
+        Task<List<OwnershipDocumentType>> GetOwnershipDocumentsTypesAsync();
+        Task<OwnershipDocumentType> GetOwnershipDocumentsTypeByIdAsync(int id);
+        Task<List<MapFormat>> GetMapFormatsAsync();
+        Task<MapFormat> GetMapFormatByIdAsync(int id);
+        Task<List<MapCoordinatesAccuracy>> GetMapCoordinatesAccuraciesAsync();
+        Task<MapCoordinatesAccuracy> GetMapCoordinatesAccuracyByIdAsync(int id);
+        Task<List<BuildingType>> GetBuildingTypesAsync();
+        Task<BuildingType> GetBuildingTypeByIdAsync(int id);
     }
 }

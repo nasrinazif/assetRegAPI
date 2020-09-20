@@ -113,6 +113,62 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return cities;
         }
 
+        public async Task<List<OwnershipDocumentType>> GetOwnershipDocumentsTypesAsync()
+        {
+            var ownnershipDocTypes = await _context.OwnershipDocumentTypes.ToListAsync();
+
+            return ownnershipDocTypes;
+        }
+
+        public async Task<OwnershipDocumentType> GetOwnershipDocumentsTypeByIdAsync(int id)
+        {
+            var ownnershipDocType = await _context.OwnershipDocumentTypes.FirstOrDefaultAsync(o => o.Id == id);
+
+            return ownnershipDocType;
+        }
+
+        public async Task<List<MapFormat>> GetMapFormatsAsync()
+        {
+            var mapFormats = await _context.MapFormats.ToListAsync();
+
+            return mapFormats;
+        }
+
+        public async Task<MapFormat> GetMapFormatByIdAsync(int id)
+        {
+            var mapFormat = await _context.MapFormats.FirstOrDefaultAsync(m => m.Id == id);
+
+            return mapFormat;
+        }
+
+        public async Task<List<MapCoordinatesAccuracy>> GetMapCoordinatesAccuraciesAsync()
+        {
+            var mapCoordinatesAccuracies = await _context.MapCoordinatesAccuracies.ToListAsync();
+
+            return mapCoordinatesAccuracies;
+        }
+
+        public async Task<MapCoordinatesAccuracy> GetMapCoordinatesAccuracyByIdAsync(int id)
+        {
+            var mapCoordinatesAccuracy = await _context.MapCoordinatesAccuracies.FirstOrDefaultAsync(m => m.Id == id);
+
+            return mapCoordinatesAccuracy;
+        }
+
+        public async Task<List<BuildingType>> GetBuildingTypesAsync()
+        {
+            var buildingTypes = await _context.BuildingTypes.ToListAsync();
+
+            return buildingTypes;
+        }
+
+        public async Task<BuildingType> GetBuildingTypeByIdAsync(int id)
+        {
+            var buildingType = await _context.BuildingTypes.FirstOrDefaultAsync(b => b.Id == id);
+
+            return buildingType;
+        }
+
         /* Sync Methods*/
 
         public Company GetCompany(int id)
