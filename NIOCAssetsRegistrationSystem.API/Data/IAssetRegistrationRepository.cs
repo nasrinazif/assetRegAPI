@@ -28,5 +28,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<int?> GetCompanyCodeForUser(int id);
         void DeleteCompanyPropertyInquiry(CompaniesPropertyInquiry companiesPropertyInquiry);
         CompaniesPropertyInquiry GetCompaniesProperty(int id);
+        Task<List<Province>> GetProvincesAsync();
+        Task<Province> GetProvinceByIdAsync(int id);
     }
 }

@@ -78,6 +78,20 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return companyCode;
         }
 
+        public async Task<List<Province>> GetProvincesAsync()
+        {
+            var provinces = await _context.Provinces.ToListAsync();
+
+            return provinces;
+        }
+
+        public async Task<Province> GetProvinceByIdAsync(int id)
+        {
+            var province = await _context.Provinces.FirstOrDefaultAsync(p => p.Id == id);
+
+            return province;
+        }
+
         /* Sync Methods*/
 
         public Company GetCompany(int id)
