@@ -46,6 +46,10 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
                opt.MapFrom(src => src.City.Name.ToString()));
             CreateMap<Province, ProvinceToReturnDto>();
             CreateMap<City, CityToReturnDto>();
+            CreateMap<OwnershipDocumentType, OwnershipDocumentTypeToReturnDto>();
+            CreateMap<MapFormat, MapFormatToReturnDto>();
+            CreateMap<MapCoordinatesAccuracy, MapCoordinatesAccuracyToReturnDto>();
+            CreateMap<BuildingType, BuildingTypeToReturnDto>();
         }
     }
 }

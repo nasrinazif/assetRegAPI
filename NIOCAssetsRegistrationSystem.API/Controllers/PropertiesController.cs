@@ -219,5 +219,85 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             return Ok(citiesToReturn);
         }
 
+        [HttpGet("ownershipdocumenttypes")]
+        public async Task<IActionResult> GetOwnershipDocumentTypes()
+        {
+            var ownershipDocumentTypes = await _repo.GetOwnershipDocumentsTypesAsync();
+
+            var ownershipDocumentTypesToReturn = _mapper.Map<IEnumerable<OwnershipDocumentTypeToReturnDto>>(ownershipDocumentTypes);
+
+            return Ok(ownershipDocumentTypesToReturn);
+        }
+
+        [HttpGet("ownershipdocumenttypes/{id}")]
+        public async Task<IActionResult> GetOwnershipDocumentTypeById(int id)
+        {
+            var ownershipDocumentType = await _repo.GetOwnershipDocumentsTypeByIdAsync(id);
+
+            var ownershipDocumentTypeToReturn = _mapper.Map<OwnershipDocumentTypeToReturnDto>(ownershipDocumentType);
+
+            return Ok(ownershipDocumentTypeToReturn);
+        }
+
+        [HttpGet("mapformats")]
+        public async Task<IActionResult> GetMapFormats()
+        {
+            var mapFormats = await _repo.GetMapFormatsAsync();
+
+            var mapFormatsToReturn = _mapper.Map<IEnumerable<MapFormatToReturnDto>>(mapFormats);
+
+            return Ok(mapFormatsToReturn);
+        }
+
+        [HttpGet("mapformats/{id}")]
+        public async Task<IActionResult> GetMapFormatById(int id)
+        {
+            var mapFormat = await _repo.GetMapFormatByIdAsync(id);
+
+            var mapFormatToReturn = _mapper.Map<MapFormatToReturnDto>(mapFormat);
+
+            return Ok(mapFormatToReturn);
+        }
+
+        [HttpGet("mapcoordinatesaccuracies")]
+        public async Task<IActionResult> GetMapCoordinatesAccuracies()
+        {
+            var mapCoordinatesAccuracies = await _repo.GetMapCoordinatesAccuraciesAsync();
+
+            var mapCoordinatesAccuraciesToReturn = _mapper.Map<IEnumerable<MapCoordinatesAccuracyToReturnDto>>(mapCoordinatesAccuracies);
+
+            return Ok(mapCoordinatesAccuraciesToReturn);
+        }
+
+        [HttpGet("mapcoordinatesaccuracies/{id}")]
+        public async Task<IActionResult> GetMapCoordinatesAccuracyById(int id)
+        {
+            var mapCoordinatesAccuracy = await _repo.GetMapCoordinatesAccuracyByIdAsync(id);
+
+            var mapCoordinatesAccuracyToReturn = _mapper.Map<MapCoordinatesAccuracyToReturnDto>(mapCoordinatesAccuracy);
+
+            return Ok(mapCoordinatesAccuracyToReturn);
+        }
+
+        [HttpGet("buildingtypes")]
+        public async Task<IActionResult> GetBuildingTypes()
+        {
+            var buildingTypes = await _repo.GetBuildingTypesAsync();
+
+            var buildingTypesToReturn = _mapper.Map<IEnumerable<BuildingTypeToReturnDto>>(buildingTypes);
+
+            return Ok(buildingTypesToReturn);
+        }
+
+        [HttpGet("buildingtypes/{id}")]
+        public async Task<IActionResult> GetBuildingTypeById(int id)
+        {
+            var buildingType = await _repo.GetBuildingTypeByIdAsync(id);
+
+            var buildingTypeToReturn = _mapper.Map<BuildingTypeToReturnDto>(buildingType);
+
+            return Ok(buildingTypeToReturn);
+        }
+
     }
 }
