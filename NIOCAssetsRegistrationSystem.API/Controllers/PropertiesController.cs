@@ -168,5 +168,25 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return BadRequest("Failed to delete the property");
         }
+
+        [HttpGet("provinces")]
+        public async Task<IActionResult> GetProvinces()
+        {
+            var provinces = await _repo.GetProvincesAsync();
+
+            var provincesToReturn = _mapper.Map<IEnumerable<ProvinceToReturnDto>>(provinces);
+
+            return Ok(provincesToReturn);
+        }
+
+        [HttpGet("provinces/{id}")]
+        public async Task<IActionResult> GetProvinceById(int id)
+        {
+            var province = await _repo.GetProvinceByIdAsync(id);
+
+            var provinceToReturn = _mapper.Map<ProvinceToReturnDto>(province);
+
+            return Ok(provinceToReturn);
+        }
     }
 }
