@@ -30,5 +30,8 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         CompaniesPropertyInquiry GetCompaniesProperty(int id);
         Task<List<Province>> GetProvincesAsync();
         Task<Province> GetProvinceByIdAsync(int id);
+        Task<List<City>> GetCitiesAsync();
+        Task<City> GetCityByIdAsync(int id);
+        Task<List<City>> GetCitiesByProvinceIdAsync(int id);
     }
 }

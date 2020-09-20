@@ -92,6 +92,27 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return province;
         }
 
+        public async Task<List<City>> GetCitiesAsync()
+        {
+            var cities = await _context.Cities.ToListAsync();
+
+            return cities;
+        }
+
+        public async Task<City> GetCityByIdAsync(int id)
+        {
+            var city = await _context.Cities.FirstOrDefaultAsync(c => c.Id == id);
+
+            return city;
+        }
+
+        public async Task<List<City>> GetCitiesByProvinceIdAsync(int id)
+        {
+            var cities = await _context.Cities.Where(p => p.ProvinceId == id).ToListAsync();
+
+            return cities;
+        }
+
         /* Sync Methods*/
 
         public Company GetCompany(int id)

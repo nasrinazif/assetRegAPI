@@ -188,5 +188,36 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return Ok(provinceToReturn);
         }
+
+        [HttpGet("cities")]
+        public async Task<IActionResult> GetCities()
+        {
+            var cities = await _repo.GetCitiesAsync();
+
+            var citiesToReturn = _mapper.Map<IEnumerable<CityToReturnDto>>(cities);
+
+            return Ok(citiesToReturn);
+        }
+
+        [HttpGet("cities/{id}")]
+        public async Task<IActionResult> GetCityById(int id)
+        {
+            var city = await _repo.GetCityByIdAsync(id);
+
+            var cityToReturn = _mapper.Map<CityToReturnDto>(city);
+
+            return Ok(cityToReturn);
+        }
+
+        [HttpGet("province/{id}/cities")]
+        public async Task<IActionResult> GetCitiesByProvinceId(int id)
+        {
+            var cities = await _repo.GetCitiesByProvinceIdAsync(id);
+
+            var citiesToReturn = _mapper.Map<IEnumerable<CityToReturnDto>>(cities);
+
+            return Ok(citiesToReturn);
+        }
+
     }
 }

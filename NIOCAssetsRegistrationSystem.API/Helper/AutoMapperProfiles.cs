@@ -45,6 +45,7 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
                .ForMember(dest => dest.CityName, opt =>
                opt.MapFrom(src => src.City.Name.ToString()));
             CreateMap<Province, ProvinceToReturnDto>();
+            CreateMap<City, CityToReturnDto>();
         }
     }
 }
