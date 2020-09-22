@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NIOCAssetsRegistrationSystem.API.Data;
 using NIOCAssetsRegistrationSystem.API.Dtos;
+using NIOCAssetsRegistrationSystem.API.Models;
 
 namespace NIOCAssetsRegistrationSystem.API.Controllers
 {
@@ -299,5 +300,19 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             return Ok(buildingTypeToReturn);
         }
 
-    }
+        [HttpPost("addproperty")]
+        public async Task<IActionResult> CreateProperty(PropertyToRegisterDto propertyToRegisterDto)
+        {
+            var propertyToCreate = _mapper.Map<CompaniesPropertyInquiry>(propertyToRegisterDto);
+
+            _repo.Add(propertyToCreate);
+
+            if (await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to save the new property");
+        }
+    }    
 }
