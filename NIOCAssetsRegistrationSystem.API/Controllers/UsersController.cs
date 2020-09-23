@@ -65,7 +65,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             return Ok(userTypesToReturn);
         }
 
-        [HttpGet("{username}")]
+        [HttpGet("username/{username}")]
         public async Task<IActionResult> GetUserByName(string username)
         {
             var user = await _repo.GetUserByName(username);
