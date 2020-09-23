@@ -44,5 +44,15 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return Ok(companiesToReturn);
         }
+
+        [HttpGet("usertypes")]
+        public async Task<IActionResult> GetUserTypess()
+        {
+            var userTypes = await _repo.GetUserTypesAsync();
+
+            var userTypesToReturn = _mapper.Map<IEnumerable<UserTypeToReturnDto>>(userTypes);
+
+            return Ok(userTypesToReturn);
+        }
     }
 }

@@ -53,6 +53,7 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
             CreateMap<PropertyToRegisterDto, CompaniesPropertyInquiry>();
             CreateMap<PropertyToUpdateDto, CompaniesPropertyInquiry>();
             CreateMap<Company, CompanyToReturnDto>();
+            CreateMap<UserType, UserTypeToReturnDto>();
         }
     }
 }
