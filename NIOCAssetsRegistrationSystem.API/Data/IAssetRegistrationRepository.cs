@@ -41,5 +41,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<MapCoordinatesAccuracy> GetMapCoordinatesAccuracyByIdAsync(int id);
         Task<List<BuildingType>> GetBuildingTypesAsync();
         Task<BuildingType> GetBuildingTypeByIdAsync(int id);
+        Task<List<Company>> GetCompaniesAsync();
+        Task<List<UserType>> GetUserTypesAsync();
     }
 }

@@ -34,5 +34,15 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return Ok(userToReturn);
         }
+
+        [HttpGet("companies")]
+        public async Task<IActionResult> GetCompanies()
+        {
+            var companies = await _repo.GetCompaniesAsync();
+
+            var companiesToReturn = _mapper.Map<IEnumerable<CompanyToReturnDto>>(companies);
+
+            return Ok(companiesToReturn);
+        }
     }
 }

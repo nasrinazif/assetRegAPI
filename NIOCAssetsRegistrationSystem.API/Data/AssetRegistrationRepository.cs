@@ -169,6 +169,20 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return buildingType;
         }
 
+        public async Task<List<Company>> GetCompaniesAsync()
+        {
+            var companies = await _context.Companies.ToListAsync();
+
+            return companies;
+        }
+
+        public async Task<List<UserType>> GetUserTypesAsync()
+        {
+            var userTypes = await _context.UserTypes.ToListAsync();
+
+            return userTypes;
+        }
+
         /* Sync Methods*/
 
         public Company GetCompany(int id)

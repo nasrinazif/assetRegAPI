@@ -52,6 +52,7 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
             CreateMap<BuildingType, BuildingTypeToReturnDto>();
             CreateMap<PropertyToRegisterDto, CompaniesPropertyInquiry>();
             CreateMap<PropertyToUpdateDto, CompaniesPropertyInquiry>();
+            CreateMap<Company, CompanyToReturnDto>();
         }
     }
 }
