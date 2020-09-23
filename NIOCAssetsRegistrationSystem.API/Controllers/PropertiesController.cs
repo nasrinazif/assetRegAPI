@@ -314,5 +314,20 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return BadRequest("Failed to save the new property");
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProperty(int id, PropertyToUpdateDto propertyToUpdateDto)
+        {
+            var propertyFromRepo = await _repo.GetCompaniesPropertyAsync(id);
+
+            _mapper.Map(propertyToUpdateDto, propertyFromRepo);
+
+            if (await _repo.SaveAll())
+            {
+                return NoContent();
+            }
+
+            throw new Exception($"Updating user {id} failed on save");
+        }
     }    
 }
