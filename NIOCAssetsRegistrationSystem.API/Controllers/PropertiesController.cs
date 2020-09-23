@@ -315,7 +315,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             return BadRequest("Failed to save the new property");
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("property/{id}")]
         public async Task<IActionResult> UpdateProperty(int id, PropertyToUpdateDto propertyToUpdateDto)
         {
             var propertyFromRepo = await _repo.GetCompaniesPropertyAsync(id);
