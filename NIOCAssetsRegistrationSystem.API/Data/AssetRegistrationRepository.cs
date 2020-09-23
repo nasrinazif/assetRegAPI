@@ -183,6 +183,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return userTypes;
         }
 
+        public async Task<List<UserType>> GetUserTypesMinusAdminAsync()
+        {
+            var userTypes = await _context.UserTypes.Where(u => u.Id != 3).ToListAsync();
+
+            return userTypes;
+        }
+
         /* Sync Methods*/
 
         public Company GetCompany(int id)

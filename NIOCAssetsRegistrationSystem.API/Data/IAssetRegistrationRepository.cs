@@ -43,5 +43,6 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<BuildingType> GetBuildingTypeByIdAsync(int id);
         Task<List<Company>> GetCompaniesAsync();
         Task<List<UserType>> GetUserTypesAsync();
+        Task<List<UserType>> GetUserTypesMinusAdminAsync();
     }
 }
