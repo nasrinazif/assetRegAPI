@@ -190,6 +190,12 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return userTypes;
         }
 
+        public async Task<User> GetUserByName(string username)
+        {
+            var user = await _context.Users.Where(u => u.UserName == username).FirstOrDefaultAsync();
+
+            return user;
+        }
         /* Sync Methods*/
 
         public Company GetCompany(int id)

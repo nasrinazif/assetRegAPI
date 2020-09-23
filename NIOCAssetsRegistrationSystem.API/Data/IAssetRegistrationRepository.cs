@@ -44,5 +44,6 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<List<Company>> GetCompaniesAsync();
         Task<List<UserType>> GetUserTypesAsync();
         Task<List<UserType>> GetUserTypesMinusAdminAsync();
+        Task<User> GetUserByName(string username);
     }
 }
