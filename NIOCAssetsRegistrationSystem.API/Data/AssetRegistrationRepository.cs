@@ -196,6 +196,28 @@ namespace NIOCAssetsRegistrationSystem.API.Data
 
             return user;
         }
+
+        public async Task<List<Confirmation>> GetConfirmations()
+        {
+            var confirmations = await _context.Confirmations.ToListAsync();
+
+            return confirmations;
+        }
+
+        public async Task<List<Confirmation>> GetConfirmationByCompanyId(int id)
+        {
+            var confirmations = await _context.Confirmations.Where(c => c.CompanyId == id).ToListAsync();
+
+            return confirmations;
+        }
+
+        public async Task<Confirmation> GetConfirmation(int id)
+        {
+            var confirmation = await _context.Confirmations.Where(c => c.Id == id).FirstOrDefaultAsync();
+
+            return confirmation;
+        }
+
         /* Sync Methods*/
 
         public Company GetCompany(int id)
