@@ -37,9 +37,54 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             var userCode = confirmation.UserId.GetValueOrDefault();
             confirmation.User = _repo.GetUserSync(userCode);
 
-            /* Return the property*/
+            /* Return the confirmation*/
             var confirmationToReturn = _mapper.Map<ConfirmationToReturnDto>(confirmation);
 
-            return Ok(confirmation);
+            return Ok(confirmationToReturn);
         }
+
+        [HttpGet("confirmations")]
+        public async Task<IActionResult> GetConfirmations()
+        {
+            var confirmations = await _repo.GetConfirmations();
+
+            /* Refrences to related entities*/
+
+            foreach (var confirmation in confirmations)
+            {
+                var companyCode = confirmation.CompanyId.GetValueOrDefault();
+                confirmation.Company = _repo.GetCompany(companyCode);
+
+                var userCode = confirmation.UserId.GetValueOrDefault();
+                confirmation.User = _repo.GetUserSync(userCode);
+            }
+
+            /* Return the confirmations*/
+            var confirmationsToReturn = _mapper.Map<IEnumerable<ConfirmationToReturnDto>>(confirmations);
+
+            return Ok(confirmationsToReturn);
+        }
+
+        [HttpGet("confirmations/company/{id}")]
+        public async Task<IActionResult> GetConfirmationsByCompany(int id)
+        {
+            var confirmations = await _repo.GetConfirmationByCompanyId(id);
+
+            /* Refrences to related entities*/
+
+            foreach (var confirmation in confirmations)
+            {
+                var companyCode = confirmation.CompanyId.GetValueOrDefault();
+                confirmation.Company = _repo.GetCompany(companyCode);
+
+                var userCode = confirmation.UserId.GetValueOrDefault();
+                confirmation.User = _repo.GetUserSync(userCode);
+            }
+
+            /* Return the confirmations*/
+            var confirmationsToReturn = _mapper.Map<IEnumerable<ConfirmationToReturnDto>>(confirmations);
+
+            return Ok(confirmationsToReturn);
+        }
+    }
 }
