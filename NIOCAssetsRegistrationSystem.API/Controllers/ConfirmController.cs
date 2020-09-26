@@ -102,5 +102,20 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return BadRequest("Failed to save the new confirmation");
         }
+
+        [HttpPut("confirmation/{id}")]
+        public async Task<IActionResult> UpdateConfirmation(int id, ConfirmationToUpdateDto confirmationToUpdateDto)
+        {
+            var confirmationFromRepo = await _repo.GetConfirmation(id);
+
+            _mapper.Map(confirmationToUpdateDto, confirmationFromRepo);
+
+            if (await _repo.SaveAll())
+            {
+                return NoContent();
+            }
+
+            throw new Exception($"Updating confirmation {id} failed on save");
+        }
     }
 }
