@@ -54,6 +54,11 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
             CreateMap<PropertyToUpdateDto, CompaniesPropertyInquiry>();
             CreateMap<Company, CompanyToReturnDto>();
             CreateMap<UserType, UserTypeToReturnDto>();
+            CreateMap<Confirmation, ConfirmationToReturnDto>()
+                .ForMember(dest => dest.CompanyName, opt =>
+                opt.MapFrom(src => src.Company.Name.ToString()))
+                .ForMember(dest => dest.UserName, opt =>
+                opt.MapFrom(src => src.User.UserName.ToString()));
         }
     }
 }

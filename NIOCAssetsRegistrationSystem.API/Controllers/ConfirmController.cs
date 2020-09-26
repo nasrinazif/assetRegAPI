@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NIOCAssetsRegistrationSystem.API.Data;
+using NIOCAssetsRegistrationSystem.API.Dtos;
 
 namespace NIOCAssetsRegistrationSystem.API.Controllers
 {
@@ -27,6 +28,18 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
         [HttpGet("confirmation/{id}", Name = "GetConfirmation")]
         public async Task<IActionResult> GetConfirmation(int id)
         {
-            var confirmation = await _repo.getc
+            var confirmation = await _repo.GetConfirmation(id);
+
+            /* Refrences to related entities*/
+            var companyCode = confirmation.CompanyId.GetValueOrDefault();
+            confirmation.Company = _repo.GetCompany(companyCode);
+
+            var userCode = confirmation.UserId.GetValueOrDefault();
+            confirmation.User = _repo.GetUserSync(userCode);
+
+            /* Return the property*/
+            var confirmationToReturn = _mapper.Map<ConfirmationToReturnDto>(confirmation);
+
+            return Ok(confirmation);
         }
 }
