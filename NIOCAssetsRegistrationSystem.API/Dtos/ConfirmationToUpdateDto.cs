@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 namespace NIOCAssetsRegistrationSystem.API.Dtos
 {
     public class ConfirmationToUpdateDto
-    {
-        public DateTime? ConfirmDate { get; set; }
+    {       
         public bool? Active { get; set; }
     }
 }

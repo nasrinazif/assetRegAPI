@@ -218,6 +218,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return confirmation;
         }
 
+        public async Task<Confirmation> GetLatestConfirmationByCompany(int id)
+        {
+            var confirmation = await _context.Confirmations.Where(c => c.CompanyId == id).OrderByDescending(d => d.ConfirmDate).FirstOrDefaultAsync();
+
+            return confirmation;
+        }
+
         /* Sync Methods*/
 
         public Company GetCompany(int id)

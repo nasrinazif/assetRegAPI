@@ -48,5 +48,6 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<List<Confirmation>> GetConfirmations();
         Task<List<Confirmation>> GetConfirmationByCompanyId(int id);
         Task<Confirmation> GetConfirmation(int id);
+        Task<Confirmation> GetLatestConfirmationByCompany(int id);
     }
 }

@@ -88,6 +88,28 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             return Ok(confirmationsToReturn);
         }
 
+        [HttpGet("latestconfirmation/company/{id}")]
+        public async Task<IActionResult> GetLatestConfirmationByCompany(int id)
+        {
+            var confirmation = await _repo.GetLatestConfirmationByCompany(id);
+
+            /* Refrences to related entities*/
+
+            if(confirmation != null)
+            {
+                var companyCode = confirmation.CompanyId.GetValueOrDefault();
+                confirmation.Company = _repo.GetCompany(companyCode);
+
+                var userCode = confirmation.UserId.GetValueOrDefault();
+                confirmation.User = _repo.GetUserSync(userCode);
+            }   
+
+            /* Return the confirmations*/
+            var confirmationToReturn = _mapper.Map<ConfirmationToReturnDto>(confirmation);
+
+            return Ok(confirmationToReturn);
+        }
+
         [HttpPost("addconfirmation")]
         public async Task<IActionResult> CreateConfirmation(ConfirmationToCreateDto confirmationToCreateDto)
         {
