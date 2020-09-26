@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NIOCAssetsRegistrationSystem.API.Data;
 using NIOCAssetsRegistrationSystem.API.Dtos;
+using NIOCAssetsRegistrationSystem.API.Models;
 
 namespace NIOCAssetsRegistrationSystem.API.Controllers
 {
@@ -85,6 +86,21 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             var confirmationsToReturn = _mapper.Map<IEnumerable<ConfirmationToReturnDto>>(confirmations);
 
             return Ok(confirmationsToReturn);
+        }
+
+        [HttpPost("addconfirmation")]
+        public async Task<IActionResult> CreateConfirmation(ConfirmationToCreateDto confirmationToCreateDto)
+        {
+            var confirmationToCreate = _mapper.Map<Confirmation>(confirmationToCreateDto);
+
+            _repo.Add(confirmationToCreate);
+
+            if (await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to save the new confirmation");
         }
     }
 }
