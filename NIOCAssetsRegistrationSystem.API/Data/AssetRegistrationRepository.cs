@@ -66,7 +66,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         {
             var companyId = await _context.Users.Where(u => u.Id == id).Select(c => c.CompanyId).FirstOrDefaultAsync();
 
-            var companyProperties = await _context.CompaniesPropertyInquiries.Where(c => c.CompanyId == companyId).ToListAsync();
+            var companyProperties = await _context.CompaniesPropertyInquiries.Where(c => c.CompanyId == companyId).OrderByDescending(d => d.LatestChanges).ToListAsync();
 
             return companyProperties;
         }
