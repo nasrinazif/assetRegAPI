@@ -24,5 +24,6 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         public DbSet<BuildingType> BuildingTypes { get; set; }
         public DbSet<CompaniesPropertyInquiry> CompaniesPropertyInquiries { get; set; }
         public DbSet<Confirmation> Confirmations { get; set; }
+        public DbSet<FileUpload> FileUploads { get; set; }
     }
 }
