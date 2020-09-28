@@ -49,5 +49,8 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<List<Confirmation>> GetConfirmationByCompanyId(int id);
         Task<Confirmation> GetConfirmation(int id);
         Task<Confirmation> GetLatestConfirmationByCompany(int id);
+        Task<FileUpload> GetUploadedFileAsync(int id);
+        Task<List<FileUpload>> GetUploadedFilesAsync();
+        Task<List<FileUpload>> GetUploadedFilesByCompanyIdAsync(int id);
     }
 }

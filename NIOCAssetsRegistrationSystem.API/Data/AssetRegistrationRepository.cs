@@ -225,6 +225,27 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return confirmation;
         }
 
+        public async Task<FileUpload> GetUploadedFileAsync(int id)
+        {
+            var uploadedFile = await _context.FileUploads.Where(f => f.Id == id).FirstOrDefaultAsync();
+
+            return uploadedFile;
+        }
+
+        public async Task<List<FileUpload>> GetUploadedFilesAsync()
+        {
+            var uploadedFiles = await _context.FileUploads.ToListAsync();
+
+            return uploadedFiles;
+        }
+
+        public async Task<List<FileUpload>> GetUploadedFilesByCompanyIdAsync(int id)
+        {
+            var uploadedFiles = await _context.FileUploads.Where(f => f.CompanyId == id).ToListAsync();
+
+            return uploadedFiles;
+        }
+
         /* Sync Methods*/
 
         public Company GetCompany(int id)
