@@ -88,5 +88,20 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return Ok(uploadedFiles);
         }
+
+        [HttpDelete("file/{id}")]
+        public async Task<IActionResult> DeleteFile(int id)
+        {
+            var fileToDelete = _repo.GetUploadedFile(id);
+
+            _repo.DeleteUploadedFile(fileToDelete);
+
+            if (await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to delete the file");
+        }
     }
 }

@@ -50,7 +50,9 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<Confirmation> GetConfirmation(int id);
         Task<Confirmation> GetLatestConfirmationByCompany(int id);
         Task<FileUpload> GetUploadedFileAsync(int id);
+        FileUpload GetUploadedFile(int id);
         Task<List<FileUpload>> GetUploadedFilesAsync();
         Task<List<FileUpload>> GetUploadedFilesByCompanyIdAsync(int id);
+        void DeleteUploadedFile(FileUpload uploadedFile);
     }
 }

@@ -32,6 +32,11 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             _context.Remove(companiesPropertyInquiry);
         }
 
+        public void DeleteUploadedFile(FileUpload uploadedFile)
+        {
+            _context.Remove(uploadedFile);
+        }
+
         /*Async Methods*/
 
         public async Task<User> GetUser(int id)
@@ -253,6 +258,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             var company = _context.Companies.FirstOrDefault(c => c.Id == id);
 
             return company;
+        }
+
+        public FileUpload GetUploadedFile(int id)
+        {
+            var uploadedFile = _context.FileUploads.Where(f => f.Id == id).FirstOrDefault();
+
+            return uploadedFile;
         }
 
         public CompaniesPropertyInquiry GetCompaniesProperty(int id)
