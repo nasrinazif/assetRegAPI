@@ -24,7 +24,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             this._mapper = mapper;
         }
 
-        [HttpGet("file/{id}"]
+        [HttpGet("file/{id}")]
         public async Task<IActionResult> GetFile(int id)
         {
             /* Get the property from the asset repo by its id*/
@@ -42,4 +42,51 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return Ok(uploadedFile);
         }
+
+        [HttpGet("files")]
+        public async Task<IActionResult> GetFiles(int id)
+        {
+            /* Get the property from the asset repo by its id*/
+            var uploadedFilesFromRepo = await _repo.GetUploadedFilesAsync();
+
+            /* Refrences to related entities*/
+            foreach(var uploadedFileFromRepo in uploadedFilesFromRepo)
+            {
+                var companyCode = uploadedFileFromRepo.CompanyId.GetValueOrDefault();
+                uploadedFileFromRepo.Company = _repo.GetCompany(companyCode);
+
+                var userCode = uploadedFileFromRepo.UserId.GetValueOrDefault();
+                uploadedFileFromRepo.User = _repo.GetUserSync(userCode);
+
+            }
+            
+            /* Return the property*/
+            var uploadedFiles = _mapper.Map<IEnumerable<UploadedFileToReturnDto>>(uploadedFilesFromRepo);
+
+            return Ok(uploadedFiles);
+        }
+
+        [HttpGet("files/company/{id}")]
+        public async Task<IActionResult> GetFilesByCompany(int id)
+        {
+            /* Get the property from the asset repo by its id*/
+            var uploadedFilesFromRepo = await _repo.GetUploadedFilesByCompanyIdAsync(id);
+
+            /* Refrences to related entities*/
+            foreach (var uploadedFileFromRepo in uploadedFilesFromRepo)
+            {
+                var companyCode = uploadedFileFromRepo.CompanyId.GetValueOrDefault();
+                uploadedFileFromRepo.Company = _repo.GetCompany(companyCode);
+
+                var userCode = uploadedFileFromRepo.UserId.GetValueOrDefault();
+                uploadedFileFromRepo.User = _repo.GetUserSync(userCode);
+
+            }
+
+            /* Return the property*/
+            var uploadedFiles = _mapper.Map<IEnumerable<UploadedFileToReturnDto>>(uploadedFilesFromRepo);
+
+            return Ok(uploadedFiles);
+        }
+    }
 }
