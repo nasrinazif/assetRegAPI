@@ -16,5 +16,7 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
 			get { return pageSize; }
 			set { pageSize = (value > MaxPageSize) ? MaxPageSize : value; }
 		}
+
+		public int UserId { get; set; }
 	}
 }

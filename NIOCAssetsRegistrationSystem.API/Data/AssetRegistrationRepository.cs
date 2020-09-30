@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NIOCAssetsRegistrationSystem.API.Helper;
 using NIOCAssetsRegistrationSystem.API.Models;
 using System;
 using System.Collections.Generic;
@@ -74,6 +75,15 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             var companyProperties = await _context.CompaniesPropertyInquiries.Where(c => c.CompanyId == companyId).OrderByDescending(d => d.LatestChanges).ToListAsync();
 
             return companyProperties;
+        }
+
+        public async Task<PagedList<CompaniesPropertyInquiry>> GetPagedCompaniesPropertiesByUserAsync(UserParams userParams)
+        {
+            var companyId = await _context.Users.Where(u => u.Id == userParams.UserId).Select(c => c.CompanyId).FirstOrDefaultAsync();
+
+            var companyProperties = _context.CompaniesPropertyInquiries.Where(c => c.CompanyId == companyId).OrderByDescending(d => d.LatestChanges).AsQueryable();
+
+            return await PagedList<CompaniesPropertyInquiry>.CreateAsync(companyProperties, userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<int?> GetCompanyCodeForUser(int id)

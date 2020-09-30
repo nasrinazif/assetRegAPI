@@ -1,4 +1,5 @@
-﻿using NIOCAssetsRegistrationSystem.API.Models;
+﻿using NIOCAssetsRegistrationSystem.API.Helper;
+using NIOCAssetsRegistrationSystem.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesAsync();
         Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesByCompanyAsync(int id);
         Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesByUserAsync(int id);
+        Task<PagedList<CompaniesPropertyInquiry>> GetPagedCompaniesPropertiesByUserAsync(UserParams userParams);
         Company GetCompany(int id);
         UserType GetUserType(int id);
         User GetUserSync(int id);
