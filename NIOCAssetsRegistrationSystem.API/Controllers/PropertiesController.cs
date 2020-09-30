@@ -359,7 +359,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
                 return NoContent();
             }
 
-            throw new Exception($"Updating user {id} failed on save");
+            throw new Exception($"Updating property {id} failed on save");
         }
     }    
 }

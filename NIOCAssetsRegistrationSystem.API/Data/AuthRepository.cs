@@ -57,7 +57,14 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return false;
         }
 
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        public async Task<User> GetUser(int id)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            return user;
+        }
+
+        public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
@@ -80,6 +87,11 @@ namespace NIOCAssetsRegistrationSystem.API.Data
                 }
                 return true;
             }
+        }
+
+        public async Task<bool> SaveAll()
+        {
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

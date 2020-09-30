@@ -99,5 +99,30 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
                 token = tokenHandler.WriteToken(token)
             });
         }
+
+        [HttpPut("changepass/{id}")]
+        public async Task<IActionResult> ChangePassword(int id, UserForChangePasswordDto userForChangePassword)
+        {
+            var userFromRepo = await _repo.GetUser(id);
+
+            byte[] passwordHash, passwordSalt;
+
+            _repo.CreatePasswordHash(userForChangePassword.Password, out passwordHash, out passwordSalt);
+
+            userForChangePassword.PasswordHash = passwordHash;
+            userForChangePassword.PasswordSalt = passwordSalt;
+
+
+            /* User to update in DB*/
+
+            _mapper.Map(userForChangePassword, userFromRepo);
+
+            if (await _repo.SaveAll())
+            {
+                return NoContent();
+            }
+
+            throw new Exception($"Updating user {id} failed on save");
+        }
     }
 }

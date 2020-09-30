@@ -13,6 +13,8 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
         public AutoMapperProfiles()
         {
             CreateMap<UserForRegisterDto, User>();
+            CreateMap<UserForUpdateDto, User>();
+            CreateMap<UserForChangePasswordDto, User>();
             CreateMap<User, UserToReturnDto>()
                 .ForMember(dest => dest.CompanyName, opt => 
                 opt.MapFrom(src => src.Company.Name.ToString()))

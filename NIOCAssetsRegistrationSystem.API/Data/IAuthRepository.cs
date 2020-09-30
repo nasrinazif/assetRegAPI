@@ -11,5 +11,8 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<User> Register(User user, string password);
         Task<User> Login(string username, string password);
         Task<bool> UserExists(string username);
+        Task<User> GetUser(int id);
+        void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt);
+        Task<bool> SaveAll();
     }
 }
