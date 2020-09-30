@@ -15,6 +15,7 @@ namespace NIOCAssetsRegistrationSystem.API.Models
         public int? CompanyId { get; set; }
         public UserType UserType { get; set; }
         public int? UserTypeId { get; set; }
+        public bool? HasPasswordEverChanged { get; set; } = false;
         public ICollection<CompaniesPropertyInquiry> CompaniesPropertyInquiries { get; set; }
         public ICollection<Confirmation> Confirmations { get; set; }
     }

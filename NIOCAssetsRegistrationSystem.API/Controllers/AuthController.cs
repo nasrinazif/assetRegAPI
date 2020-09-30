@@ -111,6 +111,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             userForChangePassword.PasswordHash = passwordHash;
             userForChangePassword.PasswordSalt = passwordSalt;
+            userForChangePassword.HasPasswordEverChanged = true;
 
 
             /* User to update in DB*/
