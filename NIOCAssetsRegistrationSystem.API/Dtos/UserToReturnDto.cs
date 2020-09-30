@@ -14,6 +14,7 @@ namespace NIOCAssetsRegistrationSystem.API.Dtos
         public int? UserTypeId { get; set; }
         public string CompanyName { get; set; }
         public string UserTypeName { get; set; }
+        public bool? HasPasswordEverChanged { get; set; }
 
     }
 }
