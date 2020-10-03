@@ -33,6 +33,11 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             _context.Remove(companiesPropertyInquiry);
         }
 
+        public void DeleteUser(User user)
+        {
+            _context.Remove(user);
+        }
+
         public void DeleteUploadedFile(FileUpload uploadedFile)
         {
             _context.Remove(uploadedFile);

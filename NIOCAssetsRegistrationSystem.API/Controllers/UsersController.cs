@@ -94,5 +94,20 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return Ok(userToReturn);
         }
+
+        [HttpDelete("user/{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var userToDelete = _repo.GetUserSync(id);
+
+            _repo.DeleteUser(userToDelete);
+
+            if (await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to delete the user");
+        }
     }
 }

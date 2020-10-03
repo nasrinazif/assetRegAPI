@@ -29,6 +29,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         BuildingType GetBuildingType(int id);
         Task<int?> GetCompanyCodeForUser(int id);
         void DeleteCompanyPropertyInquiry(CompaniesPropertyInquiry companiesPropertyInquiry);
+        void DeleteUser(User user);
         CompaniesPropertyInquiry GetCompaniesProperty(int id);
         Task<List<Province>> GetProvincesAsync();
         Task<Province> GetProvinceByIdAsync(int id);
