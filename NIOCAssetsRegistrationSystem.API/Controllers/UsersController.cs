@@ -34,6 +34,26 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return Ok(userToReturn);
         }
+        [HttpGet("company/{id}")]
+        public async Task<IActionResult> GetUsersByCompany(int id)
+        {
+            var usersByCompany = await _repo.GetUsersByCompanyAsync(id);
+
+            foreach (var user in usersByCompany)
+            {
+                /* Refrences to related entities*/
+                var companyCode = user.CompanyId.GetValueOrDefault();
+                user.Company = _repo.GetCompany(companyCode);
+
+                var userTypeCode = user.UserTypeId.GetValueOrDefault();
+                user.UserType = _repo.GetUserType(userTypeCode);
+            }
+
+            var usersToReturn = _mapper.Map<IEnumerable<UserToReturnDto>>(usersByCompany);
+
+            return Ok(usersToReturn);
+        }
+
 
         [HttpGet("companies")]
         public async Task<IActionResult> GetCompanies()

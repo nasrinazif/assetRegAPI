@@ -261,6 +261,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return uploadedFiles;
         }
 
+        public async Task<List<User>> GetUsersByCompanyAsync(int id)
+        {
+            var usersByCompany = await _context.Users.Where(c => c.CompanyId == id).ToListAsync();
+
+            return usersByCompany;
+        }
+
         /* Sync Methods*/
 
         public Company GetCompany(int id)
@@ -268,6 +275,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             var company = _context.Companies.FirstOrDefault(c => c.Id == id);
 
             return company;
+        }
+
+        public UserType GetUsertype(int id)
+        {
+            var userType = _context.UserTypes.FirstOrDefault(c => c.Id == id);
+
+            return userType;
         }
 
         public FileUpload GetUploadedFile(int id)
