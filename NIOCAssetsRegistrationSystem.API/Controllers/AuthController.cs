@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -100,6 +101,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             });
         }
 
+        [Authorize]
         [HttpPut("changepass/{id}")]
         public async Task<IActionResult> ChangePassword(int id, UserForChangePasswordDto userForChangePassword)
         {
