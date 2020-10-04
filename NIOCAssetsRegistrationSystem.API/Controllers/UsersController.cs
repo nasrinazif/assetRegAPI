@@ -109,5 +109,20 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return BadRequest("Failed to delete the user");
         }
+
+        [HttpPut("user/{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
+        {
+            var userFromRepo = await _repo.GetUser(id);
+
+            _mapper.Map(userForUpdateDto, userFromRepo);
+
+            if (await _repo.SaveAll())
+            {
+                return NoContent();
+            }
+
+            throw new Exception($"Updating user {id} failed on save");
+        }
     }
 }
