@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NIOCAssetsRegistrationSystem.API.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class MigrationForSQLServer : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,7 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -25,7 +25,7 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -38,7 +38,7 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -51,7 +51,7 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -64,7 +64,7 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -77,7 +77,7 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -90,7 +90,7 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -103,7 +103,7 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     ProvinceId = table.Column<int>(nullable: false)
                 },
@@ -123,12 +123,13 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(nullable: true),
                     PasswordHash = table.Column<byte[]>(nullable: true),
                     PasswordSalt = table.Column<byte[]>(nullable: true),
                     CompanyId = table.Column<int>(nullable: true),
-                    UserTypeId = table.Column<int>(nullable: true)
+                    UserTypeId = table.Column<int>(nullable: true),
+                    HasPasswordEverChanged = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -152,7 +153,7 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PropertyTitle = table.Column<string>(nullable: true),
                     ArenaArea = table.Column<decimal>(nullable: true),
                     OwnershipDocument = table.Column<bool>(nullable: true),
@@ -168,7 +169,10 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                     OwnershipDocumentTypeId = table.Column<int>(nullable: true),
                     MapFormatId = table.Column<int>(nullable: true),
                     MapCoordinatesAccuracyId = table.Column<int>(nullable: true),
-                    BuildingTypeId = table.Column<int>(nullable: true)
+                    BuildingTypeId = table.Column<int>(nullable: true),
+                    UploadedFile = table.Column<byte[]>(nullable: true),
+                    Latitude = table.Column<decimal>(nullable: true),
+                    Longitude = table.Column<decimal>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -228,7 +232,7 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ConfirmDate = table.Column<DateTime>(nullable: true),
                     Active = table.Column<bool>(nullable: true),
                     CompanyId = table.Column<int>(nullable: true),
@@ -245,6 +249,36 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Confirmations_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FileUploads",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FileName = table.Column<string>(nullable: true),
+                    CompanyId = table.Column<int>(nullable: true),
+                    UserId = table.Column<int>(nullable: true),
+                    FileUploadDate = table.Column<DateTime>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    UploadedFile = table.Column<byte[]>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FileUploads", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FileUploads_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FileUploads_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -307,6 +341,16 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FileUploads_CompanyId",
+                table: "FileUploads",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FileUploads_UserId",
+                table: "FileUploads",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_CompanyId",
                 table: "Users",
                 column: "CompanyId");
@@ -324,6 +368,9 @@ namespace NIOCAssetsRegistrationSystem.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Confirmations");
+
+            migrationBuilder.DropTable(
+                name: "FileUploads");
 
             migrationBuilder.DropTable(
                 name: "BuildingTypes");
