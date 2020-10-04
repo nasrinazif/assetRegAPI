@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace NIOCAssetsRegistrationSystem.API.Controllers
-{
-    [Authorize]
+{    
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
