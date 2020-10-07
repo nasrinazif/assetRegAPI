@@ -59,5 +59,9 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         void DeleteUploadedFile(FileUpload uploadedFile);
         Task<List<User>> GetUsersByCompanyAsync(int id);
         UserType GetUsertype(int id);
+        Task<List<Owner>> GetOwnersAsync();
+        Task<List<Beneficiary>> GetBeneficiaryAsync();
+        Owner GetOwner(int id);
+        Beneficiary GetBeneficiary(int id);
     }
 }

@@ -196,6 +196,20 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return companies;
         }
 
+        public async Task<List<Owner>> GetOwnersAsync()
+        {
+            var owners = await _context.Owners.ToListAsync();
+
+            return owners;
+        }
+
+        public async Task<List<Beneficiary>> GetBeneficiaryAsync()
+        {
+            var beneficiaries = await _context.Beneficiaries.ToListAsync();
+
+            return beneficiaries;
+        }
+
         public async Task<List<UserType>> GetUserTypesAsync()
         {
             var userTypes = await _context.UserTypes.ToListAsync();
@@ -280,6 +294,20 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             var company = _context.Companies.FirstOrDefault(c => c.Id == id);
 
             return company;
+        }
+
+        public Owner GetOwner(int id)
+        {
+            var owner = _context.Owners.FirstOrDefault(o => o.Id == id);
+
+            return owner;
+        }
+
+        public Beneficiary GetBeneficiary(int id)
+        {
+            var beneficiary = _context.Beneficiaries.FirstOrDefault(b => b.Id == id);
+
+            return beneficiary;
         }
 
         public UserType GetUsertype(int id)
