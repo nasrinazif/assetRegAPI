@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NIOCAssetsRegistrationSystem.API.Data;
 using NIOCAssetsRegistrationSystem.API.Dtos;
 using NIOCAssetsRegistrationSystem.API.Helper;
@@ -36,6 +37,12 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             /* Refrences to related entities*/
             var companyCode = propertry.CompanyId.GetValueOrDefault();
             propertry.Company = _repo.GetCompany(companyCode);
+
+            var ownerCode = propertry.OwnerId.GetValueOrDefault();
+            propertry.Owner = _repo.GetOwner(ownerCode);
+
+            var beneficiaryCode = propertry.BeneficiaryId.GetValueOrDefault();
+            propertry.Beneficiary = _repo.GetBeneficiary(beneficiaryCode);
 
             var userCode = propertry.UserId.GetValueOrDefault();
             propertry.User = _repo.GetUserSync(userCode);
@@ -200,6 +207,26 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             }
 
             return BadRequest("Failed to delete the property");
+        }
+
+        [HttpGet("owners")]
+        public async Task<IActionResult> GetOwners()
+        {
+            var owners = await _repo.GetOwnersAsync();
+
+            var ownersToReturn = _mapper.Map<IEnumerable<OwnerToRetuenDto>>(owners);
+
+            return Ok(ownersToReturn);
+        }
+
+        [HttpGet("beneficiaries")]
+        public async Task<IActionResult> GetBeneficiaries()
+        {
+            var beneficiaries = await _repo.GetBeneficiaryAsync();
+
+            var beneficiariesToReturn = _mapper.Map<IEnumerable<BeneficiaryToReturnDto>>(beneficiaries);
+
+            return Ok(beneficiariesToReturn);
         }
 
         [HttpGet("provinces")]
