@@ -15,12 +15,17 @@ namespace NIOCAssetsRegistrationSystem.API.Dtos
         public bool? ExistingBuilding { get; set; }
         public decimal? BuildingArea { get; set; }
         public string Description { get; set; }
+        public string Usage { get; set; }
         public DateTime? LatestChanges { get; set; }
         public byte[] UploadedFile { get; set; }
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
         public int? CompanyId { get; set; }
         public string CompanyName { get; set; }
+        public int? OwnerId { get; set; }
+        public string OwnerName { get; set; }
+        public int? BeneficiaryId { get; set; }
+        public string BeneficiaryName { get; set; }
         public int? UserId { get; set; }
         public string UserName { get; set; }
         public int? ProvinceId { get; set; }

@@ -23,6 +23,9 @@ namespace NIOCAssetsRegistrationSystem.API.Dtos
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
         public DateTime? LatestChanges { get; set; }
-        public int? UserId { get; set; }        
+        public int? UserId { get; set; }
+        public int? OwnerId { get; set; }
+        public int? BeneficiaryId { get; set; }
+        public string Usage { get; set; }
     }
 }

@@ -36,7 +36,11 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
                 .ForMember(dest => dest.MapCoordinatesAccuracyName, opt =>
                 opt.MapFrom(src => src.MapCoordinatesAccuracy.Name.ToString()))
                 .ForMember(dest => dest.BuildingTypeName, opt =>
-                opt.MapFrom(src => src.BuildingType.Name.ToString()));
+                opt.MapFrom(src => src.BuildingType.Name.ToString()))
+                .ForMember(dest => dest.OwnerName, opt =>
+                opt.MapFrom(src => src.Owner.Name.ToString()))
+                .ForMember(dest => dest.BeneficiaryName, opt =>
+                opt.MapFrom(src => src.Beneficiary.Name.ToString()));
             CreateMap<CompaniesPropertyInquiry, PropertiesToReturnDto>()
                .ForMember(dest => dest.CompanyName, opt =>
                opt.MapFrom(src => src.Company.Name.ToString()))
