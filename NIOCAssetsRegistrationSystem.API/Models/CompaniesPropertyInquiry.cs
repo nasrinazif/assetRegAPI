@@ -15,9 +15,14 @@ namespace NIOCAssetsRegistrationSystem.API.Models
         public bool? ExistingBuilding { get; set; }
         public decimal? BuildingArea { get; set; }
         public string Description { get; set; }
+        public string Usage { get; set; }
         public DateTime? LatestChanges { get; set; }
         public Company Company { get; set; }
         public int? CompanyId { get; set; }
+        public Owner Owner { get; set; }
+        public int? OwnerId { get; set; }
+        public Beneficiary Beneficiary { get; set; }
+        public int? BeneficiaryId { get; set; }
         public User User { get; set; }
         public int? UserId { get; set; }
         public Province Province { get; set; }

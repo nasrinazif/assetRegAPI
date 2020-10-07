@@ -16,6 +16,8 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         public DbSet<User> Users { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<Owner> Owners { get; set; }
+        public DbSet<Beneficiary> Beneficiaries { get; set; }
         public DbSet<Province> Provinces { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<OwnershipDocumentType> OwnershipDocumentTypes { get; set; }
