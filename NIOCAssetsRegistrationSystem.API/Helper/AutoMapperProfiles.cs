@@ -55,6 +55,8 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
             CreateMap<PropertyToRegisterDto, CompaniesPropertyInquiry>();
             CreateMap<PropertyToUpdateDto, CompaniesPropertyInquiry>();
             CreateMap<Company, CompanyToReturnDto>();
+            CreateMap<Owner, OwnerToRetuenDto>();
+            CreateMap<Beneficiary, BeneficiaryToReturnDto>();
             CreateMap<UserType, UserTypeToReturnDto>();
             CreateMap<Confirmation, ConfirmationToReturnDto>()
                 .ForMember(dest => dest.CompanyName, opt =>
