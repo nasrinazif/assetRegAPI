@@ -74,6 +74,7 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
                 opt.MapFrom(src => src.Company.Name.ToString()))
                 .ForMember(dest => dest.UserName, opt =>
                 opt.MapFrom(src => src.User.UserName.ToString()));
+            CreateMap<UploadedFileToRegister, FileUpload>();
         }
     }
 }

@@ -108,7 +108,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
         }
 
         [HttpPost("uploadfile")]
-        public async Task<IActionResult> UploadFile(UploadedFileToRegister uploadedFileToRegister)
+        public async Task<IActionResult> UploadFile([FromForm]UploadedFileToRegister uploadedFileToRegister)
         {
             var file = uploadedFileToRegister.File;
             var folderName = Path.Combine("Files", uploadedFileToRegister.CompanyId.ToString());            
