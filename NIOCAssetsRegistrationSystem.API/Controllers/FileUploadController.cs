@@ -134,7 +134,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
                 if (await _repo.SaveAll())
                 {
-                    return Ok();
+                    return Ok(new { dbPath });
                 }
             }            
 
