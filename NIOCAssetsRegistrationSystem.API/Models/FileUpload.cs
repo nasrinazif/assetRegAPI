@@ -15,6 +15,6 @@ namespace NIOCAssetsRegistrationSystem.API.Models
         public int? UserId { get; set; }
         public DateTime? FileUploadDate { get; set; }
         public string Description { get; set; }
-        public byte[] UploadedFile { get; set; }
+        public string FilePath { get; set; }
     }
 }
