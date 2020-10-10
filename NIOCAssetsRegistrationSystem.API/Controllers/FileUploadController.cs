@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -8,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NIOCAssetsRegistrationSystem.API.Data;
 using NIOCAssetsRegistrationSystem.API.Dtos;
+using NIOCAssetsRegistrationSystem.API.Models;
 
 namespace NIOCAssetsRegistrationSystem.API.Controllers
 {
@@ -102,6 +105,41 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             }
 
             return BadRequest("Failed to delete the file");
+        }
+
+        [HttpPost("uploadfile")]
+        public async Task<IActionResult> UploadFile(UploadedFileToRegister uploadedFileToRegister)
+        {
+            var file = uploadedFileToRegister.File;
+            var folderName = Path.Combine("Files", uploadedFileToRegister.CompanyId.ToString());            
+            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+            if (file.Length > 0)
+            {
+                var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                var fullPath = Path.Combine(pathToSave, fileName);
+                var dbPath = Path.Combine(folderName, fileName);
+
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+
+                var fileToAdd = _mapper.Map<FileUpload>(uploadedFileToRegister);
+
+                fileToAdd.FilePath = dbPath;
+
+                _repo.Add(fileToAdd);
+
+                if (await _repo.SaveAll())
+                {
+                    return Ok();
+                }
+            }            
+
+            
+
+            return BadRequest("Failed to save the new property");
         }
     }
 }
