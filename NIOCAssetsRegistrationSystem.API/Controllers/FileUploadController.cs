@@ -120,8 +120,13 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             if (file != null)
             {
                 var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                int indexOfLastDot = fileName.LastIndexOf(".");
+                var uniqueName = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + 
+                    DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString();
+                fileName = fileName.Insert(indexOfLastDot, "_" + uniqueName);
                 var fullPath = Path.Combine(pathToSave, fileName);
                 var dbPath = Path.Combine(folderName, fileName);
+                uploadedFileToRegister.FileName = fileName;
 
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
@@ -142,7 +147,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             
 
-            return BadRequest("Failed to save the new property");
+            return BadRequest("Failed to add new file");
         }
 
         [HttpPost("testupload")]
