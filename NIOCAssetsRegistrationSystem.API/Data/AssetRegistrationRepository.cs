@@ -91,6 +91,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return await PagedList<CompaniesPropertyInquiry>.CreateAsync(companyProperties, userParams.PageNumber, userParams.PageSize);
         }
 
+        public async Task<PagedList<CompaniesPropertyInquiry>> GetPagedPropertiesByCompanyAsync(UserParams userParams, int id)
+        { 
+            var companyProperties = _context.CompaniesPropertyInquiries.Where(c => c.CompanyId == id).OrderByDescending(d => d.LatestChanges).AsQueryable();
+
+            return await PagedList<CompaniesPropertyInquiry>.CreateAsync(companyProperties, userParams.PageNumber, userParams.PageSize);
+        }
+
         public async Task<int?> GetCompanyCodeForUser(int id)
         {
             var companyCode = await _context.Users.Where(c => c.Id == id).Select(c => c.CompanyId).FirstOrDefaultAsync();

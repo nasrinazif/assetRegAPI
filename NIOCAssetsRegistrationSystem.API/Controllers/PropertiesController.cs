@@ -127,6 +127,35 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             return Ok(propertiesToReturn);
         }
 
+        [HttpGet("company/{id}/paged")]
+        public async Task<IActionResult> GetPagedPropertiesByCompanyId([FromQuery]UserParams userParams, int id)
+        {
+            var properties = await _repo.GetPagedPropertiesByCompanyAsync(userParams, id);
+
+            foreach (var propertry in properties)
+            {
+                /* Refrences to related entities*/
+                var companyCode = propertry.CompanyId.GetValueOrDefault();
+                propertry.Company = _repo.GetCompany(companyCode);
+
+                var userCode = propertry.UserId.GetValueOrDefault();
+                propertry.User = _repo.GetUserSync(userCode);
+
+                var provinceCode = propertry.ProvinceId.GetValueOrDefault();
+                propertry.Province = _repo.GetProvince(provinceCode);
+
+                var cityCode = propertry.CityId.GetValueOrDefault();
+                propertry.City = _repo.GetCity(cityCode);
+            }
+
+            /* Return the properties*/
+            var propertiesToReturn = _mapper.Map<IEnumerable<PropertiesToReturnDto>>(properties);
+
+            Response.AddPagination(properties.CurrentPage, properties.PageSize, properties.TotalCount, properties.TotalPages);
+
+            return Ok(propertiesToReturn);
+        }
+
         [HttpGet("user/{id}")]
         public async Task<IActionResult> GetPropertiesByUserId(int id)
         {
