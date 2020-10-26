@@ -294,6 +294,17 @@ namespace NIOCAssetsRegistrationSystem.API.Data
             return usersByCompany;
         }
 
+        public Task<Dictionary<int?, int>> GetCompaniesPropertiesCount()
+        {
+            //var companyProperties = await _context.CompaniesPropertyInquiries.GroupBy(x => x.CompanyId).Where(x => x.Count() > 1).ToListAsync();
+
+            // return companyProperties;
+
+            var result = _context.CompaniesPropertyInquiries.GroupBy(e => e.CompanyId).Select(e => new { e.Key, Count = e.Count() }).ToDictionaryAsync(e => e.Key, e => e.Count);
+
+            return result;
+        }
+
         /* Sync Methods*/
 
         public Company GetCompany(int id)

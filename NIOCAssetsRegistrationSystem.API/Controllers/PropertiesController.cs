@@ -417,5 +417,13 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             throw new Exception($"Updating property {id} failed on save");
         }
+
+        [HttpGet("companiespropcount")]
+        public async Task<IActionResult> GetCompaniesPropCount()
+        {
+            var comPropCoun = await _repo.GetCompaniesPropertiesCount();
+
+            return Ok(comPropCoun);
+        }
     }    
 }
