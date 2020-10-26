@@ -9,6 +9,7 @@ namespace NIOCAssetsRegistrationSystem.API.Models
     {
         public int Id { get; set; }
         public string PropertyTitle { get; set; }
+        public string UniqueFileCode { get; set; }
         public decimal? ArenaArea { get; set; }
         public bool? OwnershipDocument { get; set; }
         public bool? ExistingMap { get; set; }

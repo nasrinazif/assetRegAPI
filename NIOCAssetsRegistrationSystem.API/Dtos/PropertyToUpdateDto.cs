@@ -10,6 +10,7 @@ namespace NIOCAssetsRegistrationSystem.API.Dtos
         public int? ProvinceId { get; set; }
         public int? CityId { get; set; }
         public string PropertyTitle { get; set; }
+        public string UniqueFileCode { get; set; }
         public decimal? ArenaArea { get; set; }
         public bool? OwnershipDocument { get; set; }
         public int? OwnershipDocumentTypeId { get; set; }
