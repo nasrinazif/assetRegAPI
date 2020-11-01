@@ -75,7 +75,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
 
         public async Task<List<CompaniesPropertyInquiry>> GetCompaniesAllPropertiesAsync()
         {
-            var companiesAllProperties = await _context.CompaniesPropertyInquiries.ToListAsync();
+            var companiesAllProperties = await _context.CompaniesPropertyInquiries.OrderBy(c => c.CompanyId).ToListAsync();
 
             return companiesAllProperties;
         }
