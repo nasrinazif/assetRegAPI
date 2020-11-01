@@ -50,6 +50,27 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
                opt.MapFrom(src => src.Province.Name.ToString()))
                .ForMember(dest => dest.CityName, opt =>
                opt.MapFrom(src => src.City.Name.ToString()));
+            CreateMap<CompaniesPropertyInquiry, PropertiesAllFieldsToReturnDto>()
+               .ForMember(dest => dest.CompanyName, opt =>
+               opt.MapFrom(src => src.Company.Name.ToString()))
+               .ForMember(dest => dest.UserName, opt =>
+               opt.MapFrom(src => src.User.UserName.ToString()))
+               .ForMember(dest => dest.ProvinceName, opt =>
+               opt.MapFrom(src => src.Province.Name.ToString()))
+               .ForMember(dest => dest.CityName, opt =>
+               opt.MapFrom(src => src.City.Name.ToString()))
+               .ForMember(dest => dest.OwnerName, opt =>
+               opt.MapFrom(src => src.Owner.Name.ToString()))
+               .ForMember(dest => dest.BeneficiaryName, opt =>
+               opt.MapFrom(src => src.Beneficiary.Name.ToString()))
+               .ForMember(dest => dest.OwnershipDocumentTypeName, opt =>
+               opt.MapFrom(src => src.OwnershipDocumentType.Name.ToString()))
+               .ForMember(dest => dest.MapFormatName, opt =>
+               opt.MapFrom(src => src.MapFormat.Name.ToString()))
+               .ForMember(dest => dest.MapCoordinatesAccuracyName, opt =>
+               opt.MapFrom(src => src.MapCoordinatesAccuracy.Name.ToString()))
+               .ForMember(dest => dest.BuildingTypeName, opt =>
+               opt.MapFrom(src => src.BuildingType.Name.ToString()));
             CreateMap<Province, ProvinceToReturnDto>();
             CreateMap<City, CityToReturnDto>();
             CreateMap<OwnershipDocumentType, OwnershipDocumentTypeToReturnDto>();
