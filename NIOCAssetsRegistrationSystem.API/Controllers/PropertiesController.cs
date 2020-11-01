@@ -168,7 +168,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             }
 
             /* Return the properties*/
-            var propertiesToReturn = _mapper.Map<IEnumerable<PropertiesAllFieldsToReturnDto>>(properties);
+            var propertiesToReturn = _mapper.Map<IEnumerable<PropertiesAllFieldsForAdminToReturnDto>>(properties);
 
             return Ok(propertiesToReturn);
         }
@@ -214,7 +214,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             }
 
             /* Return the properties*/
-            var propertiesToReturn = _mapper.Map<IEnumerable<PropertiesAllFieldsToReturnDto>>(properties);
+            var propertiesToReturn = _mapper.Map<IEnumerable<PropertiesAllFieldsForAdminToReturnDto>>(properties);
 
             return Ok(propertiesToReturn);
         }
