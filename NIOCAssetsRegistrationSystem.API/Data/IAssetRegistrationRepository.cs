@@ -16,6 +16,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<CompaniesPropertyInquiry> GetCompaniesPropertyAsync(int id);
         Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesAsync();
         Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesByCompanyAsync(int id);
+        Task<List<CompaniesPropertyInquiry>> GetCompaniesAllPropertiesAsync();
         Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesByUserAsync(int id);
         Task<PagedList<CompaniesPropertyInquiry>> GetPagedCompaniesPropertiesByUserAsync(UserParams userParams);
         Task<PagedList<CompaniesPropertyInquiry>> GetPagedPropertiesByCompanyAsync(UserParams userParams, int id);

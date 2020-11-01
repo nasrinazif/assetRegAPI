@@ -173,6 +173,52 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
             return Ok(propertiesToReturn);
         }
 
+        [HttpGet("company/all")]
+        public async Task<IActionResult> GetAllProperties()
+        {
+            /* Get the properties from the asset repo */
+            var properties = await _repo.GetCompaniesAllPropertiesAsync();
+
+            foreach (var propertry in properties)
+            {
+                /* Refrences to related entities*/
+                var companyCode = propertry.CompanyId.GetValueOrDefault();
+                propertry.Company = _repo.GetCompany(companyCode);
+
+                var userCode = propertry.UserId.GetValueOrDefault();
+                propertry.User = _repo.GetUserSync(userCode);
+
+                var provinceCode = propertry.ProvinceId.GetValueOrDefault();
+                propertry.Province = _repo.GetProvince(provinceCode);
+
+                var cityCode = propertry.CityId.GetValueOrDefault();
+                propertry.City = _repo.GetCity(cityCode);
+
+                var ownerCode = propertry.OwnerId.GetValueOrDefault();
+                propertry.Owner = _repo.GetOwner(ownerCode);
+
+                var beneficiaryCode = propertry.BeneficiaryId.GetValueOrDefault();
+                propertry.Beneficiary = _repo.GetBeneficiary(beneficiaryCode);
+
+                var ownershipDocTypeCode = propertry.OwnershipDocumentTypeId.GetValueOrDefault();
+                propertry.OwnershipDocumentType = _repo.GetOwnershipDocumentType(ownershipDocTypeCode);
+
+                var mapFormatCode = propertry.MapFormatId.GetValueOrDefault();
+                propertry.MapFormat = _repo.GetMapFormat(mapFormatCode);
+
+                var mapCoordinateAccuracyCode = propertry.MapCoordinatesAccuracyId.GetValueOrDefault();
+                propertry.MapCoordinatesAccuracy = _repo.GetMapCoordinatesAccuracy(mapCoordinateAccuracyCode);
+
+                var buildingTypeCode = propertry.BuildingTypeId.GetValueOrDefault();
+                propertry.BuildingType = _repo.GetBuildingType(buildingTypeCode);
+            }
+
+            /* Return the properties*/
+            var propertiesToReturn = _mapper.Map<IEnumerable<PropertiesAllFieldsToReturnDto>>(properties);
+
+            return Ok(propertiesToReturn);
+        }
+
         [HttpGet("company/{id}/paged")]
         public async Task<IActionResult> GetPagedPropertiesByCompanyId([FromQuery]UserParams userParams, int id)
         {
