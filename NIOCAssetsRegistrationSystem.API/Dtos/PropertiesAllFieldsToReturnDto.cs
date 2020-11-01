@@ -39,5 +39,6 @@ namespace NIOCAssetsRegistrationSystem.API.Dtos
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
         public string Description { get; set; }
+        public DateTime? LatestChanges { get; set; }
     }
 }
