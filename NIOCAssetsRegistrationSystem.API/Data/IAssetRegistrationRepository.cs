@@ -20,6 +20,7 @@ namespace NIOCAssetsRegistrationSystem.API.Data
         Task<List<CompaniesPropertyInquiry>> GetCompaniesPropertiesByUserAsync(int id);
         Task<PagedList<CompaniesPropertyInquiry>> GetPagedCompaniesPropertiesByUserAsync(UserParams userParams);
         Task<PagedList<CompaniesPropertyInquiry>> GetPagedPropertiesByCompanyAsync(UserParams userParams, int id);
+        Task<int> GetCompanyRecordCount(int id);
         Task<Dictionary<int?, int>> GetCompaniesPropertiesCount();
         Company GetCompany(int id);
         UserType GetUserType(int id);

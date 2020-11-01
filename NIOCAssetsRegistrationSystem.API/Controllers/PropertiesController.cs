@@ -517,5 +517,13 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return Ok(comPropCoun);
         }
+
+        [HttpGet("recordscount/{id}")]
+        public async Task<IActionResult> GetCompanyRecordCount(int id)
+        {
+            var comPropCoun = await _repo.GetCompanyRecordCount(id);
+
+            return Ok(comPropCoun);
+        }
     }    
 }

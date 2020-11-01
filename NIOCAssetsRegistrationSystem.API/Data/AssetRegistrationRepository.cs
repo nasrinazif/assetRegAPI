@@ -72,6 +72,13 @@ namespace NIOCAssetsRegistrationSystem.API.Data
 
             return companyProperties;
         }
+        public async Task<int> GetCompanyRecordCount(int id)
+        {
+            var recordCount = await _context.CompaniesPropertyInquiries.Where(c => c.CompanyId == id).CountAsync();
+
+            return recordCount;
+        }
+
 
         public async Task<List<CompaniesPropertyInquiry>> GetCompaniesAllPropertiesAsync()
         {
