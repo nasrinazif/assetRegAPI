@@ -117,6 +117,7 @@ namespace NIOCAssetsRegistrationSystem.API.Helper
                 .ForMember(dest => dest.UserName, opt =>
                 opt.MapFrom(src => src.User.UserName.ToString()));
             CreateMap<UploadedFileToRegister, FileUpload>();
+            CreateMap<CityToRegister, City>();
         }
     }
 }

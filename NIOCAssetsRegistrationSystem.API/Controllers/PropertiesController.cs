@@ -525,5 +525,20 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
 
             return Ok(comPropCoun);
         }
+
+        [HttpPost("addcity")]
+        public async Task<IActionResult> CreateCity(CityToRegister cityToRegister)
+        {
+            var cityToCreate = _mapper.Map<City>(cityToRegister);
+
+            _repo.Add(cityToCreate);
+
+            if (await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to save the new city");
+        }
     }    
 }
