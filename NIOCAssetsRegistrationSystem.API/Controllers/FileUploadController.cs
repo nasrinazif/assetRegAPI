@@ -47,7 +47,7 @@ namespace NIOCAssetsRegistrationSystem.API.Controllers
         }
 
         [HttpGet("files")]
-        public async Task<IActionResult> GetFiles(int id)
+        public async Task<IActionResult> GetFiles()
         {
             /* Get the files from the asset repo by its id*/
             var uploadedFilesFromRepo = await _repo.GetUploadedFilesAsync();
